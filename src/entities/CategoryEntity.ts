@@ -1,14 +1,14 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
 } from 'typeorm';
 
 @Entity('categories')
 export class CategoryEntity {
   @PrimaryGeneratedColumn()
-    id: number;
+      id: number;
 
   @Column()
-    name: string;
+      name: string;
 }

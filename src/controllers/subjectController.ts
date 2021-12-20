@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import * as categoryService from '../services/categoryService';
+import * as subjectService from '../services/subjectService';
 
 async function getCategories(req: Request, res: Response) {
     try {
-        const categories = await categoryService.getCategories();
-        res.send(categories);
+        const subjectsbyPeriod = await subjectService.getSubjectsByPeriod();
+        res.send(subjectsbyPeriod);
     } catch (err) {
         res.sendStatus(500);
     }
