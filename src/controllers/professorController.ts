@@ -10,6 +10,16 @@ async function getProfessorsBySubjects(req: Request, res: Response) {
     }
 }
 
+async function getProfessors(req: Request, res: Response) {
+    try {
+        const result = await professorService.getProfessors();
+        res.send(result);
+    } catch (err) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     getProfessorsBySubjects,
+    getProfessors,
 };
