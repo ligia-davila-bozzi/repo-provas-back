@@ -17,7 +17,8 @@ async function createCategories() {
         getRepository(CategoryEntity).create({
             name: category,
         })));
-    await getRepository(CategoryEntity).save(categories);
+    const a = await getRepository(CategoryEntity).save(categories);
+    return a;
 }
 
 export {
