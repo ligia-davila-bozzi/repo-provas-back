@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as subjectService from '../services/subjectService';
 
-async function getCategories(req: Request, res: Response) {
+async function getSubjects(req: Request, res: Response) {
     try {
         const subjectsbyPeriod = await subjectService.getSubjectsByPeriod();
         res.send(subjectsbyPeriod);
@@ -11,5 +11,5 @@ async function getCategories(req: Request, res: Response) {
 }
 
 export {
-    getCategories,
+    getSubjects,
 };
