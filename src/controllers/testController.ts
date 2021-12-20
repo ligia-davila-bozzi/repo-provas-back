@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { TestEntity } from '../entities/TestEntity';
 import * as testService from '../services/testService';
 
 async function getTestsBySubjectAndCategories(req: Request, res: Response) {
@@ -21,7 +22,18 @@ async function getTestsByProfessorAndCategories(req: Request, res: Response) {
     }
 }
 
+async function RegisterTest(req: Request, res: Response) {
+    const testBody: TestEntity = req.body;
+    try {
+        await testService.postTest(testBody);
+        res.sendStatus(201);
+    } catch (err) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     getTestsBySubjectAndCategories,
     getTestsByProfessorAndCategories,
+    RegisterTest,
 };

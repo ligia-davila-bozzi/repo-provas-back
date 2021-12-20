@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { CategoryEntity } from '../entities/CategoryEntity';
+import { TestEntity } from '../entities/TestEntity';
 
 async function getTestsBySubjectAndCategories(subjectId: number) {
     const result = await getRepository(CategoryEntity)
@@ -21,7 +22,29 @@ async function getTestsByProfessorAndCategories(professorId: number) {
     return result;
 }
 
+async function postTest(testBody: TestEntity) {
+    const {
+        name,
+        pdfLink,
+        category,
+        subject,
+        professor,
+    } = testBody;
+
+    const result = getRepository(TestEntity)
+        .create({
+            name,
+            pdfLink,
+            category,
+            subject,
+            professor,
+        });
+
+    await getRepository(TestEntity).save(result);
+}
+
 export {
     getTestsBySubjectAndCategories,
     getTestsByProfessorAndCategories,
+    postTest,
 };
