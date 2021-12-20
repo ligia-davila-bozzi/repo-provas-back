@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { TestEntity } from '../entities/TestEntity';
+import { testBodySchema } from '../schemas/testSchema';
 import * as testService from '../services/testService';
 
 async function getTestsBySubjectAndCategories(req: Request, res: Response) {
@@ -24,6 +25,12 @@ async function getTestsByProfessorAndCategories(req: Request, res: Response) {
 
 async function RegisterTest(req: Request, res: Response) {
     const testBody: TestEntity = req.body;
+    const invalidBody = testBodySchema.validate(testBody).error;
+
+    if (invalidBody) {
+        return res.sendStatus(400);
+    }
+
     try {
         await testService.postTest(testBody);
         res.sendStatus(201);
